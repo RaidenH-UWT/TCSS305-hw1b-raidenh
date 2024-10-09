@@ -55,7 +55,7 @@ class ItemTest {
                     BULK_QUANTITY, new BigDecimal(BULK_PRICE));
 
     @Test
-    public final void testConstructorEmptyItemName() {
+    void testConstructorEmptyItemName() {
         assertAll("Item name as empty string to constructors.",
                 () -> assertThrows(IllegalArgumentException.class,
                         () -> new StoreItem("", new BigDecimal(ITEM_PRICE),
@@ -70,7 +70,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testConstructorNullItemName() {
+    void testConstructorNullItemName() {
         assertAll("Item name as null to constructors.",
                 () -> assertThrows(NullPointerException.class,
                         () -> new StoreItem(null, new BigDecimal(ITEM_PRICE),
@@ -85,7 +85,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testConstructorNegativeItemPrice() {
+    void testConstructorNegativeItemPrice() {
         assertAll("Item price as negative value to constructors.",
                 () -> assertThrows(IllegalArgumentException.class,
                         () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(NEGATIVE_PRICE),
@@ -100,7 +100,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testConstructorNullItemPrice() {
+    void testConstructorNullItemPrice() {
         assertAll("Item price as null value to constructors.",
                 () -> assertThrows(NullPointerException.class,
                         () -> new StoreItem(BULK_ITEM_NAME, null,
@@ -115,7 +115,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testConstructorNegativeBulkItemQuantity() {
+    void testConstructorNegativeBulkItemQuantity() {
         assertThrows(IllegalArgumentException.class,
                 () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
                         -1, new BigDecimal(BULK_PRICE)),
@@ -124,7 +124,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testConstructorNullBulkItemPrice() {
+    void testConstructorNullBulkItemPrice() {
         assertThrows(
                 IllegalArgumentException.class,
                 () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
@@ -134,7 +134,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testConstructorNegativeBulkItemPrice() {
+    void testConstructorNegativeBulkItemPrice() {
         assertThrows(NullPointerException.class,
                 () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
                         BULK_QUANTITY, null),
@@ -143,7 +143,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testTwoArguemntConstructor() {
+    void testTwoArguemntConstructor() {
         assertAll("Two argument constructor test.",
                 () -> assertEquals(
                         ITEM_NAME,
@@ -164,7 +164,7 @@ class ItemTest {
     }
 
     @Test
-    public final void testFourArgumentConstructor() {
+    void testFourArgumentConstructor() {
         assertAll("Four argument constructor test.",
                 () -> assertEquals(
                         BULK_ITEM_NAME,
