@@ -14,4 +14,12 @@ public interface ItemOrder {
      * @return an int quantity of Items
      */
     int getQuantity();
+
+    /**
+     * returns a string represenation of this ItemOrder object
+     * in a more human-readable format
+     *
+     * @return String representation of the ItemOrder object
+     */
+    String toString();
 }

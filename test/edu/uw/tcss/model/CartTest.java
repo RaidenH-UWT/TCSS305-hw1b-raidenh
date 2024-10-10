@@ -12,4 +12,28 @@ import org.junit.jupiter.api.Test;
 
 public class CartTest {
 
+    @Test
+    void testAdd() {
+
+    }
+
+    @Test
+    void testSetMembership() {
+
+    }
+
+    @Test
+    void testCalculateTotal() {
+
+    }
+
+    @Test
+    void testClear() {
+
+    }
+
+    @Test
+    void testGetCartSize() {
+
+    }
 }
