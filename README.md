@@ -21,6 +21,9 @@ particularly frustrated you about the assignment, things that particularly
 interested you about the assignment, etc. It is especially important that
 you document any difficulties you had with tools, Java libraries, etc.]
 
+\*You can see that the documentation, then the unit tests were implemented
+first by the commit history if you'd like.
+
 ## Unresolved problems in my submission:
 [Use this space to list problems which you know exist in your submission. 
 This could include program features which you did not have time to implement, 
