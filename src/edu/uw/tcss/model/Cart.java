@@ -60,4 +60,11 @@ public interface Cart {
      */
     record CartSize(int itemOrderCount, int itemCount) { }
     // https://docs.oracle.com/en/java/javase/17/language/records.html
+
+    /**
+     * returns a string representation of this cart
+     *
+     * @return String representation of this cart
+     */
+    String toString();
 }

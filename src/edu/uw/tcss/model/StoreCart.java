@@ -8,16 +8,21 @@ public class StoreCart implements Cart {
 
     public StoreCart() { }
 
+    @Override
     public void add(final ItemOrder theOrder) { }
 
+    @Override
     public void setMembership(final boolean theMembership) { }
 
+    @Override
     public BigDecimal calculateTotal() {
         return null;
     }
 
+    @Override
     public void clear() { }
 
+    @Override
     public CartSize getCartSize() {
         return new CartSize(10, 20);
     }

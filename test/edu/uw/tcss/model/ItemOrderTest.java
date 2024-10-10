@@ -45,6 +45,10 @@ class ItemOrderTest {
      * test StoreItemOrder object
      */
     private static final StoreItemOrder TEST_ITEM_ORDER = new StoreItemOrder(TEST_ITEM, ORDER_QUANTITY);
+    /**
+     * test StoreItemOrder object
+     */
+    private static final StoreItemOrder TEST_BULK_ITEM_ORDER = new StoreItemOrder(TEST_BULK_ITEM, ORDER_QUANTITY);
 
     /* I might not actually need this test cause i'm passing an item
     object to the constructor, not a String name.
@@ -90,7 +94,7 @@ class ItemOrderTest {
 
     @Test
     void testGetQuantity() {
-        assertEquals(TEST_ITEM,
+        assertEquals(ORDER_QUANTITY,
                 TEST_ITEM_ORDER.getQuantity(),
                 "getQuantity() does not return ItemOrder quantity correctly.");
     }
@@ -102,7 +106,7 @@ class ItemOrderTest {
                         TEST_ITEM_ORDER.toString(),
                         "toString() does not have correct string output for NON-BULK item."),
                 () -> assertEquals("Oranges ($2.00, 5 for $7.50), 12",
-                        TEST_ITEM_ORDER.toString(),
+                        TEST_BULK_ITEM_ORDER.toString(),
                         "toString() does not have correct string output for BULK item.")
                 );
     }
