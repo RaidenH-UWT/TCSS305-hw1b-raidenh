@@ -1,6 +1,15 @@
 package edu.uw.tcss.model;
 
+/**
+ * this interface represents an ItemOrder
+ * object, which stores an Item and quantity (int)
+ *
+ * @author Raiden H
+ * @author Charles Bryan
+ * @version 10-10-2024
+ */
 public interface ItemOrder {
+
     /**
      * gets a reference to the Item in this ItemOrder
      *
