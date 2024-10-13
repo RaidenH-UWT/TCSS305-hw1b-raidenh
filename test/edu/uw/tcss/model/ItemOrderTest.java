@@ -35,7 +35,8 @@ class ItemOrderTest {
     /**
      * test StoreItem object
      */
-    private static final StoreItem TEST_ITEM = new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE));
+    private static final StoreItem TEST_ITEM = new StoreItem(ITEM_NAME,
+            new BigDecimal(ITEM_PRICE));
     /**
      * test bulk StoreItem object
      */
@@ -44,11 +45,13 @@ class ItemOrderTest {
     /**
      * test StoreItemOrder object
      */
-    private static final StoreItemOrder TEST_ITEM_ORDER = new StoreItemOrder(TEST_ITEM, ORDER_QUANTITY);
+    private static final StoreItemOrder TEST_ITEM_ORDER =
+            new StoreItemOrder(TEST_ITEM, ORDER_QUANTITY);
     /**
      * test StoreItemOrder object
      */
-    private static final StoreItemOrder TEST_BULK_ITEM_ORDER = new StoreItemOrder(TEST_BULK_ITEM, ORDER_QUANTITY);
+    private static final StoreItemOrder TEST_BULK_ITEM_ORDER =
+            new StoreItemOrder(TEST_BULK_ITEM, ORDER_QUANTITY);
 
     /* I might not actually need this test cause i'm passing an item
     object to the constructor, not a String name.
@@ -68,7 +71,8 @@ class ItemOrderTest {
     @Test
     void testConstructorNegativeQuantity() {
         assertThrows(IllegalArgumentException.class,
-                () -> new StoreItemOrder(TEST_ITEM, -1), "Constructor does not handle negative quantity correctly.");
+                () -> new StoreItemOrder(TEST_ITEM, -1),
+                "Constructor does not handle negative quantity correctly.");
     }
     // unsure if this is necessary, zero might be acceptable for ~reasons~ but i'll
     // add it here anyways. remove later if unneeded.
@@ -76,13 +80,15 @@ class ItemOrderTest {
     @Test
     void testConstructorZeroQuantity() {
         assertThrows(IllegalArgumentException.class,
-                () -> new StoreItemOrder(TEST_ITEM, 0), "Constructor does not handle zero quantity correctly.");
+                () -> new StoreItemOrder(TEST_ITEM, 0),
+                "Constructor does not handle zero quantity correctly.");
     }
 
     @Test
     void testConstructorNullItem() {
         assertThrows(NullPointerException.class,
-                () -> new StoreItemOrder(null, ORDER_QUANTITY), "Constructor does not handle null Item correctly.");
+                () -> new StoreItemOrder(null, ORDER_QUANTITY),
+                "Constructor does not handle null Item correctly.");
     }
 
     @Test
@@ -108,6 +114,6 @@ class ItemOrderTest {
                 () -> assertEquals("Oranges ($2.00, 5 for $7.50), 12",
                         TEST_BULK_ITEM_ORDER.toString(),
                         "toString() does not have correct string output for BULK item.")
-                );
+        );
     }
 }
