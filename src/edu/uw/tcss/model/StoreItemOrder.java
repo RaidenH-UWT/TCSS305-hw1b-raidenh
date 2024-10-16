@@ -1,5 +1,3 @@
-// Finish and comment me!
-
 package edu.uw.tcss.model;
 
 /**
