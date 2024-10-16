@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.math.BigDecimal;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class CartTest {
@@ -52,9 +54,14 @@ class CartTest {
     private static final StoreItemOrder TEST_BULK_ITEM_ORDER =
             new StoreItemOrder(TEST_BULK_ITEM, ORDER_QUANTITY);
     /**
-     * test StoreCart object
+     * test StoreCart object to be created for each test
      */
-    private static final StoreCart TEST_CART = new StoreCart();
+    @BeforeEach
+    void testSetup() {
+        StoreCart TEST_CART = new StoreCart();
+        TEST_CART.add(TEST_ITEM_ORDER);
+    }
+    StoreCart TEST_CART = new StoreCart(); //TODO: figure out why tf this isn't working
 
     @Test
     void testGetCartSize() {
