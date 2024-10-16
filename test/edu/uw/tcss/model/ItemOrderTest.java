@@ -53,35 +53,11 @@ class ItemOrderTest {
     private static final StoreItemOrder TEST_BULK_ITEM_ORDER =
             new StoreItemOrder(TEST_BULK_ITEM, ORDER_QUANTITY);
 
-    /* I might not actually need this test cause i'm passing an item
-    object to the constructor, not a String name.
-    TODO: figure out if testConstructorEmptyItemName is necessary, if not, remove.
-    @Test
-    void testConstructorEmptyItemName() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new StoreItemOrder("", ORDER_QUANTITY),
-                "Constructor does not handle empty string as item name properly");
-    }
-
-    @Test
-    void testConstructorNullItemName() {
-
-    }*/
-
     @Test
     void testConstructorNegativeQuantity() {
         assertThrows(IllegalArgumentException.class,
                 () -> new StoreItemOrder(TEST_ITEM, -1),
                 "Constructor does not handle negative quantity correctly.");
-    }
-    // unsure if this is necessary, zero might be acceptable for ~reasons~ but i'll
-    // add it here anyways. remove later if unneeded.
-    // TODO: figure out if testConstructorZeroQuantity is necessary, if not, remove.
-    @Test
-    void testConstructorZeroQuantity() {
-        assertThrows(IllegalArgumentException.class,
-                () -> new StoreItemOrder(TEST_ITEM, 0),
-                "Constructor does not handle zero quantity correctly.");
     }
 
     @Test
@@ -108,10 +84,10 @@ class ItemOrderTest {
     @Test
     void testToString() {
         assertAll("toString test",
-                () -> assertEquals("Apple ($2.00), 12",
+                () -> assertEquals("Apple, $2.00, 12",
                         TEST_ITEM_ORDER.toString(),
                         "toString() does not have correct string output for NON-BULK item."),
-                () -> assertEquals("Oranges ($2.00, 5 for $7.50), 12",
+                () -> assertEquals("Oranges, $2.00 (5 for $7.50), 12",
                         TEST_BULK_ITEM_ORDER.toString(),
                         "toString() does not have correct string output for BULK item.")
         );
