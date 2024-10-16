@@ -116,6 +116,4 @@ class ItemOrderTest {
                         "toString() does not have correct string output for BULK item.")
         );
     }
-    //TODO: Implement tests for the equals() method
-    //TODO: Implement tests for the hashCode() method
 }
