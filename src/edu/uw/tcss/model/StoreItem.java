@@ -44,6 +44,7 @@ public class StoreItem implements Item {
 
     /**
      * This constructor creates an Item instance and store it's name and price.
+     *
      * @throws NullPointerException if theName or thePrice is null
      * @throws IllegalArgumentException if theName is empty or if thePrice is less than 0
      * @param theName the String name of the item to be stored

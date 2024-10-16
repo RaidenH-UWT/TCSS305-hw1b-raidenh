@@ -1,7 +1,7 @@
 package edu.uw.tcss.model;
 
 /**
- * this interface represents an ItemOrder
+ * this interface represents an immutable ItemOrder
  * object, which stores an Item and quantity (int).
  *
  * @author Raiden H
