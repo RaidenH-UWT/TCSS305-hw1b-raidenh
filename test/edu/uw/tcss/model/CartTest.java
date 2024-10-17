@@ -55,88 +55,83 @@ class CartTest {
     /**
      * test StoreCart object to be created for each test
      */
-    //I know there's a CheckStyle warning here, it thinks TEST_CART is an
-    //instance variable because of the way JUnit @BeforeEach works.
-    //To me it doesn't make sense to rename the variable, but let me know
-    //if I'm wrong.
-    @SuppressWarnings("checkstyle:MemberName")
-    private StoreCart TEST_CART = new StoreCart();
+    private StoreCart myTestCart = new StoreCart();
     @BeforeEach
     void testSetup() {
-        TEST_CART = new StoreCart();
+        myTestCart = new StoreCart();
     }
 
     @Test
     void testGetCartSize() {
         assertAll("testing getCartSize() at base case",
-            () -> assertEquals(0, TEST_CART.getCartSize().itemOrderCount(),
+            () -> assertEquals(0, myTestCart.getCartSize().itemOrderCount(),
                     "Cart does not have 0 item orders by default."),
-            () -> assertEquals(0, TEST_CART.getCartSize().itemCount(),
+            () -> assertEquals(0, myTestCart.getCartSize().itemCount(),
                     "Cart does not have 0 items by default.")
         );
-        TEST_CART.add(new StoreItemOrder(TEST_ITEM, 0));
+        myTestCart.add(new StoreItemOrder(TEST_ITEM, 0));
         assertAll("testing getCartSize() adding 0 quantity item",
-                () -> assertEquals(0, TEST_CART.getCartSize().itemOrderCount(),
+                () -> assertEquals(0, myTestCart.getCartSize().itemOrderCount(),
                         "Cart does not handle 0 quantity correctly."),
-                () -> assertEquals(0, TEST_CART.getCartSize().itemCount(),
+                () -> assertEquals(0, myTestCart.getCartSize().itemCount(),
                         "Cart does not handle 0 quantity correctly.")
         );
-        TEST_CART.add(TEST_ITEM_ORDER);
+        myTestCart.add(TEST_ITEM_ORDER);
         assertAll("testing getCartSize() with items",
-            () -> assertEquals(1, TEST_CART.getCartSize().itemOrderCount(),
+            () -> assertEquals(1, myTestCart.getCartSize().itemOrderCount(),
                         "Cart does not get itemOrderCount correctly."),
-            () -> assertEquals(ORDER_QUANTITY, TEST_CART.getCartSize().itemCount(),
+            () -> assertEquals(ORDER_QUANTITY, myTestCart.getCartSize().itemCount(),
                         "Cart does not get itemCount correctly.")
         );
     }
 
     @Test
     void testAdd() {
-        TEST_CART.add(TEST_ITEM_ORDER);
+        myTestCart.add(TEST_ITEM_ORDER);
         assertAll("testing add()",
-                () -> assertEquals(1, TEST_CART.getCartSize().itemOrderCount(),
+                () -> assertEquals(1, myTestCart.getCartSize().itemOrderCount(),
                         "Cart does not add itemOrderCount correctly."),
-                () -> assertEquals(ORDER_QUANTITY, TEST_CART.getCartSize().itemCount(),
+                () -> assertEquals(ORDER_QUANTITY, myTestCart.getCartSize().itemCount(),
                         "Cart does not add itemCount correctly.")
         );
     }
 
     @Test
     void testSetMembership() {
-        TEST_CART.add(TEST_BULK_ITEM_ORDER);
-        assertEquals(new BigDecimal("24.00"), TEST_CART.calculateTotal(),
+        myTestCart.add(TEST_BULK_ITEM_ORDER);
+        assertEquals(new BigDecimal("24.00"), myTestCart.calculateTotal(),
                 "Membership default state is incorrect.");
-        TEST_CART.setMembership(true);
-        assertEquals(new BigDecimal("19.00"), TEST_CART.calculateTotal(),
+        myTestCart.setMembership(true);
+        assertEquals(new BigDecimal("19.00"), myTestCart.calculateTotal(),
                 "Membership true state is incorrect.");
     }
 
     @Test
     void testClear() {
-        TEST_CART.add(TEST_ITEM_ORDER);
-        TEST_CART.clear();
-        assertEquals(0, TEST_CART.getCartSize().itemCount(),
+        myTestCart.add(TEST_ITEM_ORDER);
+        myTestCart.clear();
+        assertEquals(0, myTestCart.getCartSize().itemCount(),
                 "Cart does not clear correctly.");
     }
 
     @Test
     void testToString() {
-        assertEquals("0 item orders 0 items. []", TEST_CART.toString(),
+        assertEquals("0 item orders 0 items. []", myTestCart.toString(),
                 "Returned string of an empty cart does not match.");
-        TEST_CART.add(TEST_ITEM_ORDER);
-        assertEquals("1 item orders 12 items. [(Apple, $2.00)]", TEST_CART.toString(),
+        myTestCart.add(TEST_ITEM_ORDER);
+        assertEquals("1 item orders 12 items. [(Apple, $2.00)]", myTestCart.toString(),
                 "Returned string of full cart does not match.");
         //might wanna add the total price to the toString() as well for debugging or whatever
     }
 
     @Test
     void testCalculateTotal() {
-        TEST_CART.add(TEST_ITEM_ORDER);
-        assertEquals(new BigDecimal("24.00"), TEST_CART.calculateTotal(),
+        myTestCart.add(TEST_ITEM_ORDER);
+        assertEquals(new BigDecimal("24.00"), myTestCart.calculateTotal(),
                 "Single item order has the wrong total.");
-        TEST_CART.add(TEST_BULK_ITEM_ORDER);
-        TEST_CART.setMembership(true);
-        assertEquals(new BigDecimal("43.00"), TEST_CART.calculateTotal(),
+        myTestCart.add(TEST_BULK_ITEM_ORDER);
+        myTestCart.setMembership(true);
+        assertEquals(new BigDecimal("43.00"), myTestCart.calculateTotal(),
                 "Bulk item order has the wrong total.");
     }
 }
