@@ -43,7 +43,7 @@ public class StoreItem implements Item {
     private final BigDecimal myBulkPrice;
 
     /**
-     * This constructor creates an Item instance and store it's name and price.
+     * This constructor creates an Item instance and stores it's name and price.
      *
      * @throws NullPointerException if theName or thePrice is null
      * @throws IllegalArgumentException if theName is empty or if thePrice is less than 0

@@ -60,7 +60,7 @@ class CartTest {
     //To me it doesn't make sense to rename the variable, but let me know
     //if I'm wrong.
     @SuppressWarnings("checkstyle:MemberName")
-    private StoreCart TEST_CART;
+    private StoreCart TEST_CART = new StoreCart();
     @BeforeEach
     void testSetup() {
         TEST_CART = new StoreCart();

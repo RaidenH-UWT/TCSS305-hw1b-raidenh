@@ -103,9 +103,7 @@ public class StoreCart implements Cart {
             output.append(entry.getValue().getItem().toString());
             output.append("), ");
         }
-        //i know it says this is a magic number, it's just an int
-        //representing the character "," so i'm not going to correct it
-        if (output.charAt(output.length() - 2) == 44) {
+        if (output.charAt(output.length() - 2) == ',') {
             output.delete(output.length() - 2, output.length());
         }
         output.append("]");

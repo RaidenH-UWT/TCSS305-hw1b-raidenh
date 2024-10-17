@@ -10,11 +10,11 @@ package edu.uw.tcss.model;
 public final class StoreItemOrder implements ItemOrder {
 
     /**
-     * quantity instance variable for this object
+     * quantity instance variable for this object.
      */
     private final int myQuantity;
     /**
-     * item instance variable for this object
+     * StoreItem instance variable for this object.
      */
     private final StoreItem myItem;
 

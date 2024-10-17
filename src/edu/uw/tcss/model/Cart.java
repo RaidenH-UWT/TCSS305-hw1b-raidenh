@@ -13,7 +13,8 @@ import java.math.BigDecimal;
 
 public interface Cart {
     /**
-     * this method adds an ItemOrder object to the cart.
+     * this method adds an ItemOrder object to the cart. new orders of the
+     * same item will overwrite previous ones.
      *
      * @param theOrder the ItemOrder object to be added
      */
@@ -50,8 +51,6 @@ public interface Cart {
      */
     String toString();
 
-    // TODO: figure out what all this is actually supposed to tell you. is it like a toString()
-    //  of the itemOrderCount and itemCount? is it a single value? what's goin on.
     /**
      * this method returns [...] CartSize object.
      *
@@ -59,15 +58,12 @@ public interface Cart {
      */
     CartSize getCartSize();
 
-    // TODO: figure out what i'm supposed to do with this. this is like, a class, not a
-    //  method i'm including in the interface. it's not static either, i'm not sure why
-    //  this is in the interface.
     /**
+     * a Record CartSize object that stores an itemOrderCount
+     * and itemCount for the specified cart. retrieved using getCartSize()
      *
-     *
-     * @param itemOrderCount
-     * @param itemCount
+     * @param itemOrderCount number of unique item orders in the cart
+     * @param itemCount total quantity of items in the cart
      */
     record CartSize(int itemOrderCount, int itemCount) { }
-    // https://docs.oracle.com/en/java/javase/17/language/records.html
 }
