@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Raiden H
  * @version 16-10-2024
  */
-public class StoreCart implements Cart {
+public final class StoreCart implements Cart {
     /**
      * HashMap instance variable for ItemOrders in this StoreCart
      */
@@ -76,6 +76,9 @@ public class StoreCart implements Cart {
 
     @Override
     public CartSize getCartSize() {
+        //I remember you mentioned you wouldn't store these counts
+        //I'm doing it because I wnated to try out HashMap.forEach, which uses
+        //lambdas and can't affect local variables so I pulled the vars out
         myItemOrderCount = 0;
         myItemCount = 0;
         myOrderMap.forEach((k, v) -> {

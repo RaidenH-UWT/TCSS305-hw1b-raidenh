@@ -2,7 +2,6 @@ package edu.uw.tcss.model;
 
 import java.math.BigDecimal;
 import java.util.Objects;
-import java.util.logging.Logger;
 
 //i don't think i can do any JS inside  a javadoc
 //which is fair lol.
@@ -19,12 +18,7 @@ import java.util.logging.Logger;
  * @author Raiden H
  * @version 13-10-2024
  */
-public class StoreItem implements Item {
-    /**
-     * logger object for logging.
-     */
-    private static final Logger LOGGER = Logger.getLogger(StoreItem.class.getName());
-
+public final class StoreItem implements Item {
     /**
      * name instance variable.
      */
