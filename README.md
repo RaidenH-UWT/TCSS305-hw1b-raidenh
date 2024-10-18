@@ -74,7 +74,8 @@ me know exactly where to go.
 first by the commit history if you'd like.
 
 ## Unresolved problems in my submission:
-none
+My ItemTest says it has 1 too many methods because I implemented the tests
+for the extra credit problem. 
 
 ## Citations and Collaborations:
 In StoreCart I chose to use a HashMap after looking up the various types of maps.
@@ -82,6 +83,11 @@ My original `calculateTotal()` method used the `HashMap.forEach<> method`, but I
 CheckStyle warning for too many things going on inside the lambda and IntelliJ
 swapped it over to a for loop for me. I didn't know for loops worked with HashMaps
 like that, but that's pretty cool!
+
+### EXTRA CREDIT:
+Fixed "Raw use of paramaterized class" from this StackOverflow (`Comparable<StoreItem>`):
+- https://stackoverflow.com/questions/10017381/how-do-i-write-a-compareto-method-which-compares-objects
+
 
 ## Questions:
 Is there a better way to execute things inside test methods than breaking up

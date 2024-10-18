@@ -112,7 +112,4 @@ public final class StoreCart implements Cart {
         output.append("]");
         return output.toString();
     }
-    //TODO: the extra credit! implement sorting on the HashMap, by name first then by price
-    //then write a method orderByPrice() to order them by price instead (low to high)
-    //you get bonus credit if orderByPrice() is a single line (try lambdas!)
 }

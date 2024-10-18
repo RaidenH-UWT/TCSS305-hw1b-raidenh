@@ -18,7 +18,7 @@ import java.util.Objects;
  * @author Raiden H
  * @version 13-10-2024
  */
-public final class StoreItem implements Item {
+public final class StoreItem implements Item, Comparable<StoreItem> {
     /**
      * name instance variable.
      */
@@ -140,5 +140,29 @@ public final class StoreItem implements Item {
     @Override
     public int hashCode() {
         return Objects.hash(myName, myPrice, myBulkQuantity, myBulkPrice);
+    }
+
+    @Override
+    public int compareTo(final StoreItem theOther) {
+        //i really wanted to have just the return with a nested switch expression
+        //but it can't do boolean logic like an if :(
+        final int result;
+        if (getName().compareToIgnoreCase(theOther.getName()) > 0) {
+            result = -1;
+        } else if (getName().compareToIgnoreCase(theOther.getName()) < 0) {
+            result = 1;
+        } else {
+            switch (getPrice().compareTo(theOther.getPrice())) {
+                case 1 -> result = 1;
+                case -1 -> result = -1;
+                default -> result = 0;
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public int orderByPrice(final StoreItem theOther) {
+        return getPrice().compareTo(theOther.getPrice());
     }
 }

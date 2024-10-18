@@ -47,4 +47,12 @@ public interface Item {
      */
     boolean isBulk();
 
+    /**
+     * StoreItem is compared to the given StoreItem by price, returning
+     * a positive int, zero, or negative int if it's greater, equal, or less.
+     *
+     * @return a negative integer, zero, or a positive integer as this StoreItem's
+     * price is less than, equal to, or greater than the specified StoreItem
+     */
+    int orderByPrice(StoreItem theOther);
 }

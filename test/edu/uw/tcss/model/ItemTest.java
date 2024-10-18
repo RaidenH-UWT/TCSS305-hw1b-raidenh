@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 class ItemTest {
-
     /**
      * The name of the item used in testing.
      */
@@ -23,9 +22,14 @@ class ItemTest {
     private static final String BULK_ITEM_NAME = "Bulk Item";
 
     /**
-     * The price of the item used in testing.
+     * The price of the first item used in testing.
      */
-    private static final String ITEM_PRICE = ".50";
+    private static final String ITEM_PRICE_ONE = ".50";
+
+    /**
+     * The price of the second item used in testing.
+     */
+    private static final String ITEM_PRICE_TWO = "1.00";
 
     /**
      * The bulk price of the item used in testing.
@@ -43,27 +47,34 @@ class ItemTest {
     private static final int BULK_QUANTITY = 10;
 
     /**
-     * An object of class Item to use in testing.
+     * An object of class StoreItem to use in testing.
      */
-    private static final Item TEST_ITEM = new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE));
+    private static final StoreItem TEST_ITEM_ONE =
+            new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE));
 
     /**
-     * An object of class Item to use in testing.
+     * Another object of class StoreItem to use in testing.
      */
-    private static final Item TEST_BULK_ITEM =
-            new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
+    private static final StoreItem TEST_ITEM_TWO =
+            new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE_TWO));
+
+    /**
+     * An object of class StoreItem to use in testing.
+     */
+    private static final StoreItem TEST_BULK_ITEM =
+            new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE),
                     BULK_QUANTITY, new BigDecimal(BULK_PRICE));
 
     @Test
     void testConstructorEmptyItemName() {
         assertAll("Item name as empty string to constructors.",
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> new StoreItem("", new BigDecimal(ITEM_PRICE),
+                        () -> new StoreItem("", new BigDecimal(ITEM_PRICE_ONE),
                                 BULK_QUANTITY, new BigDecimal(BULK_PRICE)),
                         "Four arg constructor does not handle empty string as an "
                                 + "argument to theName properly."),
                 () -> assertThrows(IllegalArgumentException.class,
-                        () -> new StoreItem("", new BigDecimal(ITEM_PRICE)),
+                        () -> new StoreItem("", new BigDecimal(ITEM_PRICE_ONE)),
                         "Two arg constructor does not handle empty string as an "
                                 + "argument to theName properly."));
 
@@ -73,12 +84,12 @@ class ItemTest {
     void testConstructorNullItemName() {
         assertAll("Item name as null to constructors.",
                 () -> assertThrows(NullPointerException.class,
-                        () -> new StoreItem(null, new BigDecimal(ITEM_PRICE),
+                        () -> new StoreItem(null, new BigDecimal(ITEM_PRICE_ONE),
                                 BULK_QUANTITY, new BigDecimal(BULK_PRICE)),
                         "Four arg constructor does not handle null as an "
                                 + "argument to theName properly."),
                 () -> assertThrows(NullPointerException.class,
-                        () -> new StoreItem(null, new BigDecimal(ITEM_PRICE)),
+                        () -> new StoreItem(null, new BigDecimal(ITEM_PRICE_ONE)),
                         "Two arg constructor does not handle null as an "
                                 + "argument to theName properly."));
 
@@ -117,7 +128,7 @@ class ItemTest {
     @Test
     void testConstructorNegativeBulkItemQuantity() {
         assertThrows(IllegalArgumentException.class,
-                () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
+                () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE),
                         -1, new BigDecimal(BULK_PRICE)),
                 "Four arg constructor does not handle negative value as an "
                         + "argument to theBulkQuantity properly.");
@@ -127,7 +138,7 @@ class ItemTest {
     void testConstructorNullBulkItemPrice() {
         assertThrows(
                 IllegalArgumentException.class,
-                () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
+                () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE),
                         BULK_QUANTITY, new BigDecimal(NEGATIVE_PRICE)),
                 "Four arg constructor does not handle negative value as an "
                         + "argument to theBulkPrice properly.");
@@ -136,7 +147,7 @@ class ItemTest {
     @Test
     void testConstructorNegativeBulkItemPrice() {
         assertThrows(NullPointerException.class,
-                () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE),
+                () -> new StoreItem(BULK_ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE),
                         BULK_QUANTITY, null),
                 "Four arg constructor does not handle null as an "
                         + "argument to thePrice properly.");
@@ -147,19 +158,19 @@ class ItemTest {
         assertAll("Two argument constructor test.",
                 () -> assertEquals(
                         ITEM_NAME,
-                        TEST_ITEM.getName(),
+                        TEST_ITEM_ONE.getName(),
                         "Item name should be: " + ITEM_NAME),
                 () -> assertEquals(
-                        new BigDecimal(ITEM_PRICE),
-                        TEST_ITEM.getPrice(),
-                        "Item Price should be: " + ITEM_PRICE),
+                        new BigDecimal(ITEM_PRICE_ONE),
+                        TEST_ITEM_ONE.getPrice(),
+                        "Item Price should be: " + ITEM_PRICE_ONE),
                 () -> assertEquals(
                         0,
-                        TEST_ITEM.getBulkQuantity(),
+                        TEST_ITEM_ONE.getBulkQuantity(),
                         "Bulk quantity should be: 0"),
                 () -> assertEquals(
                         BigDecimal.ZERO,
-                        TEST_ITEM.getBulkPrice(),
+                        TEST_ITEM_ONE.getBulkPrice(),
                         "Bulk Price should be: 0"));
     }
 
@@ -171,9 +182,9 @@ class ItemTest {
                         TEST_BULK_ITEM.getName(),
                         "Item name should be: " + BULK_ITEM_NAME),
                 () -> assertEquals(
-                        new BigDecimal(ITEM_PRICE),
+                        new BigDecimal(ITEM_PRICE_ONE),
                         TEST_BULK_ITEM.getPrice(),
-                        "Item Price should be: " + ITEM_PRICE),
+                        "Item Price should be: " + ITEM_PRICE_ONE),
                 () -> assertEquals(
                         BULK_QUANTITY,
                         TEST_BULK_ITEM.getBulkQuantity(),
@@ -189,7 +200,7 @@ class ItemTest {
         assertAll("getName test.",
                 () -> assertEquals(
                         ITEM_NAME,
-                        TEST_ITEM.getName(),
+                        TEST_ITEM_ONE.getName(),
                         "Item name should be: " + ITEM_NAME),
                 () -> assertEquals(
                         BULK_ITEM_NAME,
@@ -201,13 +212,13 @@ class ItemTest {
     void testGetPrice() {
         assertAll("getPrice test.",
                 () -> assertEquals(
-                        new BigDecimal(ITEM_PRICE),
+                        new BigDecimal(ITEM_PRICE_ONE),
                         TEST_BULK_ITEM.getPrice(),
-                        "Item Price should be: " + ITEM_PRICE),
+                        "Item Price should be: " + ITEM_PRICE_ONE),
                 () -> assertEquals(
-                        new BigDecimal(ITEM_PRICE),
-                        TEST_ITEM.getPrice(),
-                        "Item Price should be: " + ITEM_PRICE));
+                        new BigDecimal(ITEM_PRICE_ONE),
+                        TEST_ITEM_ONE.getPrice(),
+                        "Item Price should be: " + ITEM_PRICE_ONE));
     }
 
     @Test
@@ -215,7 +226,7 @@ class ItemTest {
         assertAll("getBulkQuantity test.",
                 () -> assertEquals(
                         0,
-                        TEST_ITEM.getBulkQuantity(),
+                        TEST_ITEM_ONE.getBulkQuantity(),
                         "Bulk quantity should be: 0"),
                 () -> assertEquals(
                         BULK_QUANTITY,
@@ -228,7 +239,7 @@ class ItemTest {
         assertAll("getBulkPrice test.",
                 () -> assertEquals(
                         BigDecimal.ZERO,
-                        TEST_ITEM.getBulkPrice(),
+                        TEST_ITEM_ONE.getBulkPrice(),
                         "Bulk Price should be: 0"),
                 () -> assertEquals(
                         new BigDecimal(BULK_PRICE),
@@ -240,7 +251,7 @@ class ItemTest {
     void testIsBulk() {
         assertAll("isBulk test.",
                 () -> assertFalse(
-                        TEST_ITEM.isBulk(),
+                        TEST_ITEM_ONE.isBulk(),
                         "Item should NOT be bulk"),
                 () -> assertTrue(
                         TEST_BULK_ITEM.isBulk(),
@@ -252,7 +263,7 @@ class ItemTest {
         assertAll("toString test.",
                 () -> assertEquals(
                         "Item, $0.50",
-                        TEST_ITEM.toString(),
+                        TEST_ITEM_ONE.toString(),
                         "toString should be: \"Item, $0.50\""),
                 () -> assertEquals(
                         "Bulk Item, $0.50 (10 for $4.00)",
@@ -265,8 +276,8 @@ class ItemTest {
         assertAll("equals test.",
                 () -> assertAll("equals test same object.",
                         () -> assertEquals(
-                                TEST_ITEM,
-                                TEST_ITEM,
+                                TEST_ITEM_ONE,
+                                TEST_ITEM_ONE,
                                 "2 argument Same object should be equals() true"),
                         () -> assertEquals(
                                 TEST_BULK_ITEM,
@@ -275,9 +286,9 @@ class ItemTest {
                 () -> assertAll("equals test different object same sate.",
                         () -> {
                             final Item twoArgument =
-                                    new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE));
+                                    new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE));
                             assertEquals(
-                                    TEST_ITEM,
+                                    TEST_ITEM_ONE,
                                     twoArgument,
                                     "2 argument different objects with the same "
                                             + "state should be equals() true");
@@ -286,7 +297,7 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             BULK_ITEM_NAME,
-                                            new BigDecimal(ITEM_PRICE),
+                                            new BigDecimal(ITEM_PRICE_ONE),
                                             BULK_QUANTITY,
                                             new BigDecimal(BULK_PRICE));
                             assertEquals(
@@ -299,11 +310,11 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             ITEM_NAME,
-                                            new BigDecimal(ITEM_PRICE),
+                                            new BigDecimal(ITEM_PRICE_ONE),
                                             0,
                                             BigDecimal.ZERO);
                             assertEquals(
-                                    TEST_ITEM,
+                                    TEST_ITEM_ONE,
                                     fourArgument,
                                     "4 argument object with  0 bulk items and ZERO bulk "
                                             + "price and 2 argument object with same name and "
@@ -319,9 +330,9 @@ class ItemTest {
                             final Item twoArgument =
                                     new StoreItem(
                                             ITEM_NAME + "wrong",
-                                            new BigDecimal(ITEM_PRICE));
+                                            new BigDecimal(ITEM_PRICE_ONE));
                             assertNotEquals(
-                                    TEST_ITEM,
+                                    TEST_ITEM_ONE,
                                     twoArgument,
                                     "2 argument Different name should be false");
                         },
@@ -329,9 +340,9 @@ class ItemTest {
                             final Item twoArgument =
                                     new StoreItem(
                                             ITEM_NAME,
-                                            new BigDecimal("10" + ITEM_PRICE));
+                                            new BigDecimal("10" + ITEM_PRICE_ONE));
                             assertNotEquals(
-                                    TEST_ITEM,
+                                    TEST_ITEM_ONE,
                                     twoArgument,
                                     "2 argument Different price should be false");
                         },
@@ -339,9 +350,9 @@ class ItemTest {
                             final Item twoArgument =
                                     new StoreItem(
                                             ITEM_NAME + "wrong",
-                                            new BigDecimal("10" + ITEM_PRICE));
+                                            new BigDecimal("10" + ITEM_PRICE_ONE));
                             assertNotEquals(
-                                    TEST_ITEM,
+                                    TEST_ITEM_ONE,
                                     twoArgument,
                                     "2 argument Different name and price should be false");
                         }
@@ -351,7 +362,7 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             BULK_ITEM_NAME + "wrong",
-                                            new BigDecimal(ITEM_PRICE),
+                                            new BigDecimal(ITEM_PRICE_ONE),
                                             BULK_QUANTITY,
                                             new BigDecimal(BULK_PRICE));
                             assertNotEquals(
@@ -363,7 +374,7 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             BULK_ITEM_NAME,
-                                            new BigDecimal("10" + ITEM_PRICE),
+                                            new BigDecimal("10" + ITEM_PRICE_ONE),
                                             BULK_QUANTITY,
                                             new BigDecimal(BULK_PRICE));
                             assertNotEquals(
@@ -375,7 +386,7 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             BULK_ITEM_NAME,
-                                            new BigDecimal(ITEM_PRICE),
+                                            new BigDecimal(ITEM_PRICE_ONE),
                                             10 + BULK_QUANTITY,
                                             new BigDecimal(BULK_PRICE));
                             assertNotEquals(
@@ -387,7 +398,7 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             BULK_ITEM_NAME,
-                                            new BigDecimal(ITEM_PRICE),
+                                            new BigDecimal(ITEM_PRICE_ONE),
                                             BULK_QUANTITY,
                                             new BigDecimal("10" + BULK_PRICE));
                             assertNotEquals(
@@ -399,7 +410,7 @@ class ItemTest {
                             final Item fourArgument =
                                     new StoreItem(
                                             BULK_ITEM_NAME + "wrong",
-                                            new BigDecimal("10" + ITEM_PRICE),
+                                            new BigDecimal("10" + ITEM_PRICE_ONE),
                                             10 + BULK_QUANTITY,
                                             new BigDecimal("10" + BULK_PRICE));
                             assertNotEquals(
@@ -416,7 +427,7 @@ class ItemTest {
         assertAll("NOT equals tests for edge cases.",
                 () -> assertAll("NOT equals test null arguments.",
                         () -> assertNotEquals(
-                                TEST_ITEM,
+                                TEST_ITEM_ONE,
                                 null,
                                 "2 argument null argument should be false"),
                         () -> assertNotEquals(
@@ -426,7 +437,7 @@ class ItemTest {
                 ),
                 () -> assertAll("NOT equals test different type of arguments.",
                         () -> assertNotEquals(
-                                TEST_ITEM,
+                                TEST_ITEM_ONE,
                                 "A String",
                                 "2 argument String Object argument should be false"),
                         () -> assertNotEquals(
@@ -434,7 +445,7 @@ class ItemTest {
                                 "A String",
                                 "2 argument String Object argument should be false"),
                         () -> assertNotEquals(
-                                TEST_ITEM,
+                                TEST_ITEM_ONE,
                                 new BigDecimal("9.99"),
                                 "2 argument BigDecimal Object argument should be false"),
                         () -> assertNotEquals(
@@ -448,19 +459,19 @@ class ItemTest {
     void testHashCode() {
         assertAll("hashCode test.",
                 () -> assertEquals(
-                            TEST_ITEM.hashCode(),
-                            TEST_ITEM.hashCode(),
+                            TEST_ITEM_ONE.hashCode(),
+                            TEST_ITEM_ONE.hashCode(),
                             "2 argument objects equal by equals must have the same hashCode"),
                 () -> {
                     final Item twoArgument =
-                            new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE));
+                            new StoreItem(ITEM_NAME, new BigDecimal(ITEM_PRICE_ONE));
                     assertEquals(
-                            TEST_ITEM,
+                            TEST_ITEM_ONE,
                             twoArgument,
                             "2 argument different objects with the same state "
                                     + "should be equals() true");
                     assertEquals(
-                            TEST_ITEM.hashCode(),
+                            TEST_ITEM_ONE.hashCode(),
                             twoArgument.hashCode(),
                             "2 argument objects equal by equals must have the same hashCode");
                 },
@@ -472,7 +483,7 @@ class ItemTest {
                     final Item fourArgument =
                             new StoreItem(
                                     BULK_ITEM_NAME,
-                                    new BigDecimal(ITEM_PRICE),
+                                    new BigDecimal(ITEM_PRICE_ONE),
                                     BULK_QUANTITY,
                                     new BigDecimal(BULK_PRICE));
                     assertEquals(
@@ -486,5 +497,29 @@ class ItemTest {
                             "4 argument objects equal by equals must have the same hashCode");
 
                 });
+    }
+    //EXTRA CREDIT TESTS
+    @Test
+    void testCompareTo() {
+        assertAll("testing compareTo() extra credit",
+                () -> assertEquals(0, TEST_ITEM_ONE.compareTo(TEST_ITEM_ONE),
+                        "compareTo() compares same items incorrectly."),
+                () -> assertTrue(TEST_BULK_ITEM.compareTo(TEST_ITEM_ONE) > 0,
+                        "compareTo() should return 1 for Bulk Item.(Item)."),
+                () -> assertTrue(TEST_ITEM_ONE.compareTo(TEST_BULK_ITEM) < 0,
+                        "compareTo() should return -1 for Item.(Bulk Item).")
+        );
+    }
+
+    @Test
+    void testOrderByPrice() {
+        assertAll("testing orderByPrice() extra credit",
+                () -> assertEquals(0, TEST_ITEM_ONE.orderByPrice(TEST_ITEM_ONE),
+                        "orderByPrice() compares same items incorrectly."),
+                () -> assertTrue(TEST_ITEM_TWO.compareTo(TEST_ITEM_ONE) > 0,
+                        "orderByPrice() should return 1 for 1.(0.5)."),
+                () -> assertTrue(TEST_ITEM_ONE.compareTo(TEST_ITEM_TWO) < 0,
+                        "orderByPrice() should return -1 for 0.5.(1).")
+        );
     }
 }
