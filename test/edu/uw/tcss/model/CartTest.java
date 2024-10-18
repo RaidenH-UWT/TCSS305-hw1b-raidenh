@@ -130,7 +130,7 @@ class CartTest {
         assertEquals(new BigDecimal("24.00"), myTestCart.calculateTotal(),
                 "Single item order has the wrong total.");
         //not clearing the cart here to mashup multiple tests into one.
-        //yeah this isn't best practice
+        //yeah this could be better covered
         myTestCart.add(TEST_BULK_ITEM_ORDER);
         myTestCart.setMembership(true);
         assertEquals(new BigDecimal("43.00"), myTestCart.calculateTotal(),
