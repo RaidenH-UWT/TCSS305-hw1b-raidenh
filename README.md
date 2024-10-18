@@ -42,3 +42,5 @@ To do this I had to break up my four tests under an `assertAll()` into four
 seperate tests with a method call in the middle. Is there a better way
 to do that? I tried just adding it into the lambda but it complained, which
 makes sense because I don't fully understand lambdas yet.
+You mentioned on Thursday that there wasn't a way to do this, which is
+unfortunate.
