@@ -64,6 +64,14 @@ to a for loop using some formatting specific to Maps which I didn't know
 about but was very helpful. I implemented the 0-count order overwrite
 in my `getCartSize()` method, not in my `add()` method.
 
+For the Extra Credit, in `compareTo()` I used an if statement for checking the
+name with a nested switch expression for checking the price if necessary.
+My `orderByPrice()` uses a single-line. Just a return statement comparing the
+two Price BigDecimals. The assignment description hinted at lambdas or method
+references, but I couldn't think of how or why to use those when my return
+statement worked just fine. I implemented 4 tests for each of the methods,
+and created a second test object in `ItemTest`.
+
 I had a lot of fun with this assignment, it challenged me in places but
 I never got too stuck to continue. I didn't hit a problem that wasn't
 fixed within the day by a bit of research or asking for help in the Discord.
